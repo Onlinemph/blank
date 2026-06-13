@@ -15,7 +15,7 @@ USAGE
 
 TABLES
 ------
-    units         unit_id, unit_name, class, variant, type_id, type, tonnage, bv, intro
+    units         unit_id, unit_name, class, variant, type_id, type, tonnage, bv2, intro
     factions      faction_id, faction
     types         type_id, type
     eras          era_id, era
@@ -81,7 +81,7 @@ def build(out_dir, db_path):
         PRAGMA journal_mode=WAL;
         CREATE TABLE units (
             unit_id INTEGER PRIMARY KEY, unit_name TEXT, class TEXT, variant TEXT,
-            type_id INTEGER, type TEXT, tonnage REAL, bv INTEGER, intro TEXT
+            type_id INTEGER, type TEXT, tonnage REAL, bv2 INTEGER, intro TEXT
         );
         CREATE TABLE factions (faction_id INTEGER PRIMARY KEY, faction TEXT);
         CREATE TABLE types    (type_id INTEGER PRIMARY KEY, type TEXT);
@@ -129,7 +129,7 @@ def build(out_dir, db_path):
         DROP VIEW IF EXISTS v_availability;
         CREATE VIEW v_availability AS
         SELECT a.faction_id, f.faction, a.era_id, e.era,
-               a.unit_id, u.unit_name, u.type, u.tonnage, u.bv, u.intro
+               a.unit_id, u.unit_name, u.type, u.tonnage, u.bv2, u.intro
         FROM availability a
         LEFT JOIN factions f ON f.faction_id = a.faction_id
         LEFT JOIN eras     e ON e.era_id     = a.era_id
