@@ -1,0 +1,8 @@
+# Transient scraper artifacts (regenerable; not part of the deliverable)
+scrape.log
+out/availability.jsonl
+out/checkpoint.json
+
+# SQLite write-ahead-log sidecars (the .sqlite itself is committed)
+*.sqlite-wal
+*.sqlite-shm
